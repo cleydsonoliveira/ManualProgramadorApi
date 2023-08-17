@@ -2,18 +2,19 @@
 
 namespace MP.ApiDotnet6.Domain.Entities
 {
-    public sealed class Products
+    public sealed class Product
     {
         public int Id { get; private set; }
         public string? Name { get; private set; }
         public string? CodErp { get; private set; }
         public Decimal Price { get; private set; }
+        public ICollection<Purchase> Purchases { get; set; }
 
-        public Products(string name, string codErp, Decimal price)
+        public Product(string name, string codErp, Decimal price)
         {
             Validation(name, codErp, price);
         }
-        public Products(int id, string name, string codErp, Decimal price)
+        public Product(int id, string name, string codErp, Decimal price)
         {
             DomainValidationException.When(id < 0, "O Id informado deve ser maior que zero");
             Id = id;
